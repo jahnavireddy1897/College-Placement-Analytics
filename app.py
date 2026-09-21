@@ -653,28 +653,186 @@ elif page == "📈 Model Evaluation":
 
 elif page == "📋 Student Data":
 
-    st.header("📋 Student Dataset")
+    st.header("📋 Student Profile")
 
     st.write(
         f"Showing {len(df)} student records."
     )
 
-    st.dataframe(
-        df,
-        use_container_width=True,
-        height=500
+    # --------------------------------------------
+    # SELECT STUDENT
+    # --------------------------------------------
+
+    student_options = df["Student_ID"].tolist()
+
+    selected_id = st.selectbox(
+        "🔎 Select Student",
+        student_options,
+        format_func=lambda x: (
+            f"{x} - "
+            f"{df.loc[df['Student_ID'] == x, 'Student_Name'].iloc[0]}"
+            if not pd.isna(
+                df.loc[df["Student_ID"] == x, "Student_Name"].iloc[0]
+            )
+            and str(
+                df.loc[df["Student_ID"] == x, "Student_Name"].iloc[0]
+            ).strip() != ""
+            else f"{x} - Student Name Not Added"
+        )
     )
 
-    # --------------------------------------
+    student = df[df["Student_ID"] == selected_id].iloc[0]
+
+    # --------------------------------------------
+    # STUDENT INFORMATION
+    # --------------------------------------------
+
+    st.subheader("👤 Student Information")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+
+        st.write("**🆔 Student ID:**", student["Student_ID"])
+
+        name = student["Student_Name"]
+        if pd.isna(name) or str(name).strip() == "":
+            name = "Not Provided"
+
+        st.write("**👤 Student Name:**", name)
+
+        batch = student["Admitted_Batch"]
+        if pd.isna(batch) or str(batch).strip() == "":
+            batch = "Not Provided"
+
+        st.write("**🎓 Admitted Batch:**", batch)
+
+        st.write("**🏫 Branch:**", student["Branch"])
+
+        st.write("**📈 CGPA:**", student["CGPA"])
+
+    with col2:
+
+        email = student["Email"]
+        if pd.isna(email) or str(email).strip() == "":
+            email = "Not Provided"
+
+        st.write("**📧 Email:**", email)
+
+        mobile = student["Mobile"]
+        if pd.isna(mobile) or str(mobile).strip() == "":
+            mobile = "Not Provided"
+
+        st.write("**📱 Mobile:**", mobile)
+
+        linkedin = student["LinkedIn"]
+        if pd.isna(linkedin) or str(linkedin).strip() == "":
+            st.write("**🔗 LinkedIn:** Not Provided")
+        else:
+            st.markdown(
+                f"**🔗 LinkedIn:** [View Profile]({linkedin})"
+            )
+
+        github = student["GitHub"]
+        if pd.isna(github) or str(github).strip() == "":
+            st.write("**💻 GitHub:** Not Provided")
+        else:
+            st.markdown(
+                f"**💻 GitHub:** [View Profile]({github})"
+            )
+
+    # --------------------------------------------
+    # PLACEMENT INFORMATION
+    # --------------------------------------------
+
+    st.subheader("📊 Placement Information")
+
+    col3, col4 = st.columns(2)
+
+    with col3:
+        st.write(
+            "**Placement Status:**",
+            student["Placement"]
+        )
+
+    with col4:
+        st.write(
+            "**Package (LPA):**",
+            student["Package_LPA"]
+        )
+
+    # --------------------------------------------
+    # ACADEMIC & SKILLS INFORMATION
+    # --------------------------------------------
+
+    st.subheader("📚 Academic & Skills Information")
+
+    academic_data = pd.DataFrame({
+        "Details": [
+            "10th Percentage",
+            "12th Percentage",
+            "Backlogs",
+            "Internships",
+            "Projects",
+            "Certifications",
+            "Aptitude Score",
+            "Communication Score",
+            "DSA Score",
+            "Python",
+            "SQL",
+            "Java",
+            "Machine Learning",
+            "Web Development",
+            "Excel"
+        ],
+        "Value": [
+            student["Tenth_Percentage"],
+            student["Twelfth_Percentage"],
+            student["Backlogs"],
+            student["Internships"],
+            student["Projects"],
+            student["Certifications"],
+            student["Aptitude_Score"],
+            student["Communication_Score"],
+            student["DSA_Score"],
+            student["Python"],
+            student["SQL"],
+            student["Java"],
+            student["Machine_Learning"],
+            student["Web_Development"],
+            student["Excel"]
+        ]
+    })
+
+    st.dataframe(
+        academic_data,
+        use_container_width=True,
+        hide_index=True
+    )
+
+    # --------------------------------------------
+    # COMPLETE DATA
+    # --------------------------------------------
+
+    with st.expander("🔍 View Complete Student Record"):
+
+        st.dataframe(
+            student.to_frame("Value"),
+            use_container_width=True
+        )
+
+    # --------------------------------------------
     # DOWNLOAD DATA
-    # --------------------------------------
+    # --------------------------------------------
+
+    st.subheader("📥 Download Dataset")
 
     csv = df.to_csv(
         index=False
     ).encode("utf-8")
 
     st.download_button(
-        "⬇️ Download Dataset",
+        "⬇️ Download Placement Dataset",
         data=csv,
         file_name="placement_data.csv",
         mime="text/csv"
