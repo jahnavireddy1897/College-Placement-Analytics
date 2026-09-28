@@ -30,7 +30,7 @@ df = pd.read_csv("data/placement_data.csv")
 
 st.title("🎓 Digital College Student Database System")
 st.write(
-    "Analyze student placement data and predict placement outcomes using Machine Learning."
+    "A centralized platform for managing and accessing student information efficiently"
 )
 
 st.divider()
