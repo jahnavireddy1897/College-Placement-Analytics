@@ -28,7 +28,7 @@ df = pd.read_csv("data/placement_data.csv")
 # TITLE
 # ==========================================
 
-st.title("🎓 "Digital College Student Database System")
+st.title("🎓 Digital College Student Database System")
 st.write(
     "Analyze student placement data and predict placement outcomes using Machine Learning."
 )
