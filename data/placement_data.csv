@@ -1,5 +1,5 @@
 Student_ID,Student_Name,Admitted_Batch,Email,Mobile,LinkedIn,GitHub,Branch,CGPA,Tenth_Percentage,Twelfth_Percentage,Backlogs,Internships,Projects,Certifications,Aptitude_Score,Communication_Score,DSA_Score,Python,SQL,Java,Machine_Learning,Web_Development,Excel,Placement,Package_LPA,Admission_Register_Link,Admission_Register_Page
-STU1001,UTTANI VENKATA PRUDHVI,2017-18,uvprudhvi@gmail.com,9642102272,uvprudhvi@link.com,uvprudhvi@git.com,B.Com,7.76,63.9,88.7,0,0,2,6,60.6,81.3,66.7,1,0,0,0,1,0,1,3.83
+STU1001,UTTANI VENKATA PRUDHVI,2017-18,uvprudhvi@gmail.com,9642102272,uvprudhvi@link.com,uvprudhvi@git.com,B.Com,7.76,63.9,88.7,0,0,2,6,60.6,81.3,66.7,1,0,0,0,1,0,1,3.83,https://drive.google.com/file/d/1mcn4AvJI8xtB7-1rh8xOdohiXRP3aGsO/view?usp=sharing,3
 STU1002,MEESALA VENKATA KRISHNA RAO,2015-16,,9949578536,,,B.A.,6.4,77.2,73.5,1,3,3,1,74.3,95.8,100,1,0,0,1,0,0,1,3.89
 STU1003,M. SAI KUMAR,2015-16,,7799495133,,,B.B.A.,7.94,63,68,0,1,2,2,78.5,61.6,38.1,0,0,0,0,0,1,0,0
 STU1004,KORI PRAMEELA,2016-17,,9133918200,,,B.Sc.,8.15,85.6,69.6,0,0,1,0,61.7,53.8,63.9,1,1,0,0,1,0,1,2.88
